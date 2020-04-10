@@ -13,4 +13,4 @@ This script automates the client creation for TLS based MSK
 
  
 
- Usage: sh TLS_STEPS_AUTOMATION.sh Example-Alias <your-certificate-autority-arn> changeit changeit 
+ Usage: sh TLS_STEPS_AUTOMATION.sh Example-Alias your-certificate-autority-arn changeit changeit 
