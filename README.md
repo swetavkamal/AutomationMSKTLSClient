@@ -58,6 +58,6 @@ ssl.key.password= changeit
 Provide ZookeeperConnectString(port 2181) and BootstrapBroker-String(port 9094) information here
 
 ```
-kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper ZookeeperConnectString --replication-factor 3 --partitions 1 --topic AExampleTopic
+kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper ZookeeperConnectString --replication-factor 3 --partitions 1 --topic ExampleTopic
 kafka_2.12-2.2.1/bin/kafka-console-producer.sh --broker-list BootstrapBroker-String --topic ExampleTopic --producer.config kafka_2.12-2.2.1/client.properties
 ```
