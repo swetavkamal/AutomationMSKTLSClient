@@ -35,6 +35,9 @@ sh AutomationMSKTLSClient/TLS_STEPS_AUTOMATION.sh Example-Alias arn-of-pca chang
 ```
 mkdir /tmp/kafka_2.12-2.2.1/
 mv certificate-file client-cert-sign-request kafka.client.keystore.jks kafka.client.truststore.jks new_certificate_file /tmp/kafka_2.12-2.2.1/
+```
+
+```
 vim ~/kafka_2.12-2.2.1/client.properties
 security.protocol=SSL  
 ssl.truststore.location=/tmp/kafka_2.12-2.2.1/kafka.client.truststore.jks 
