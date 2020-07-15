@@ -21,18 +21,21 @@ This script automates the client creation for TLS based MSK
 
 **Installation steps to be made on the client(EC2) :-**
 
-Prerequisite: Check if you can telnet to the MSK brokers from the client. <br>
+Prerequisite: 
+1) Created a cluster with TLS and client authentication enabled
+2) Check if you can telnet to the MSK brokers from the client. <br>
 (If not able to telnet check security groups)
-
+3) Have minimum permsissions attached to the instance to talk to  ACM-PCA and get MSK broker information
 
 For installing JAVA and Kafka Client
 ```
 sudo yum install java-1.8.0 -y
 wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
 tar -xzf kafka_2.12-2.2.1.tgz
+rm kafka_2.12-2.2.1.tgz
 ```
 
-Run script for automating setup of the keystore and truststore using the 4 steps discussed above.
+Run script for automating setup of the keystore and truststore using the 4 parameters discussed previously
 ```
 sudo yum install git -y
 git clone https://github.com/swetavkamal/AutomationMSKTLSClient.git
@@ -45,7 +48,7 @@ mkdir /tmp/kafka_2.12-2.2.1/
 mv certificate-file client-cert-sign-request kafka.client.keystore.jks kafka.client.truststore.jks new_certificate_file /tmp/kafka_2.12-2.2.1/
 ```
 
-Create the client.properties file and enter the truststore and keystore loactions.
+Create the client.properties file
 ```
 vim ~/kafka_2.12-2.2.1/client.properties
 security.protocol=SSL  
@@ -55,8 +58,7 @@ ssl.keystore.password=changeit
 ssl.key.password= changeit
 ```
 
-Provide ZookeeperConnectString(port 2181) and BootstrapBroker-String(port 9094) information here
-
+Provide ZookeeperConnectString(port 2181) and BootstrapBroker-String(port 9094) information for creating topics and producing to them.
 ```
 kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper ZookeeperConnectString --replication-factor 3 --partitions 1 --topic ExampleTopic
 kafka_2.12-2.2.1/bin/kafka-console-producer.sh --broker-list BootstrapBroker-String --topic ExampleTopic --producer.config kafka_2.12-2.2.1/client.properties
