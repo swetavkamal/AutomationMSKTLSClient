@@ -23,7 +23,6 @@ Installation steps:-
 sudo yum install java-1.8.0 -y
 wget https://archive.apache.org/dist/kafka/2.2.1/kafka_2.12-2.2.1.tgz
 tar -xzf kafka_2.12-2.2.1.tgz
-kafka_2.12-2.2.1/bin/kafka-topics.sh --create --zookeeper ZookeeperConnectString --replication-factor 3 --partitions 1 --topic AWSKafkaTutorialTopic-client1
 ```
 
 ```
